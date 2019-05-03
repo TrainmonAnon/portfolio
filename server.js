@@ -60,9 +60,9 @@ app.post('/thanks', (req, res) => {
 
     
 });
-
-app.listen(8080, () => {
-    console.log('listening at http://localhost:8080');
-})
+var port_number = server.listen(process.env.PORT || 8080);
+app.listen(port_number, () => {
+    console.log('listening at http://localhost:'+port_number);
+});
 
 module.exports = app;
