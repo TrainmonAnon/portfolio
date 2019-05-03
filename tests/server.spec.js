@@ -77,14 +77,14 @@ describe('the server module', function() {
         });
     });
 
-    // it('thanks responds with html', (done) => {
-    //     chai.request(server)
-    //     .post('/thanks')
-    //     .end((err, res) => {
-    //         expect(err).not.exist;
-    //         expect(res).to.be.html;
-    //         done();
-    //     });
-    // });
+    it('thanks responds with html', (done) => {
+        chai.request(server)
+        .post('/thanks')
+        .end((err, res) => {
+            expect(err).not.exist;
+            expect(res).to.be.html;
+            done();
+        });
+    });
 
 });

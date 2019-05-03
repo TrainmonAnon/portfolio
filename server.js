@@ -60,9 +60,9 @@ app.post('/thanks', (req, res) => {
             console.log(err);
     });
 
-    app.listen(port, () => {
-        console.log('listening at http://localhost:' + port);
-    });
+});
+app.listen(port, () => {
+    console.log('listening at http://localhost:' + port);
 });
 
 module.exports = app;
