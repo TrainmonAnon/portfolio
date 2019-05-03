@@ -9,6 +9,8 @@ var mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -20,10 +22,10 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     const data = {
-      person: {
-        firstName: 'Brandon',
-        lastName: 'Fletcher',
-      }
+        person: {
+            firstName: 'Brandon',
+            lastName: 'Fletcher',
+        }
     }
   
     res.render('index', data);
@@ -51,18 +53,16 @@ app.post('/thanks', (req, res) => {
     }
     
     mailchimp.post('/lists/e98f95e4c7/members', contact)
-      .then(function(results) {
-        res.render('thanks', { contact: req.body });
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+        .then(function(results) {
+            res.render('thanks', { contact: req.body });
+        })
+        .catch(function (err) {
+            console.log(err);
+    });
 
-    
-});
-var port_number = server.listen(process.env.PORT || 8080);
-app.listen(port_number, () => {
-    console.log('listening at http://localhost:'+port_number);
+    app.listen(port, () => {
+        console.log('listening at http://localhost:' + port);
+    });
 });
 
 module.exports = app;
